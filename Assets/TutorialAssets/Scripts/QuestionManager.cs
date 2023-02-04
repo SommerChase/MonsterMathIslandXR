@@ -8,8 +8,6 @@ public class QuestionManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text messageBoxTextField;
     [SerializeField] private TMP_InputField answerInputField;
-
-    private string _question; 
     [SerializeField] private int answer;
 
     // Start is called before the first frame update
@@ -24,28 +22,33 @@ public class QuestionManager : MonoBehaviour
     {
         
         // Random numbers used for problem:
-        int operand1 = Random.Range(1, 100);
-        int operand2 = Random.Range(1, 100);
+        var qa = GenerateAddSubtract(1, 100);
+
+        messageBoxTextField.text = qa.question;
+        
+        ClearInputField();
+        
+    }
+
+    private (string question, int answer) GenerateAddSubtract(int min, int max)
+    {
+        int operand1 = Random.Range(min, max);
+        int operand2 = Random.Range(min, max);
+        string question = "";
 
         if (Random.value < 0.5f)
         {
-            _question = $"{operand1} + {operand2} = ?";
+            question = $"{operand1} + {operand2} = ?";
             answer = operand1 + operand2;
         }
         else
         {
-            _question = $"{operand1} - {operand2} = ?";
+            question = $"{operand1} - {operand2} = ?";
             answer = operand1 - operand2;
             // hey
         }
 
-        Debug.Log(operand1);
-        Debug.Log(operand2);
-
-        messageBoxTextField.text = _question;
-        
-        ClearInputField();
-        
+        return (question, answer);
     }
 
     public void ValidateAnswer()
