@@ -126,7 +126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1949332801673539206, guid: 33d500cd999aa164caf34551fc47935a, type: 3}
       propertyPath: m_Name
-      value: Monster Multiply
+      value: Monster Multiply Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672324390404280065, guid: 33d500cd999aa164caf34551fc47935a, type: 3}
+      propertyPath: points
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d500cd999aa164caf34551fc47935a, type: 3}
