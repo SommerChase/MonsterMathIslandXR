@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TutorialAssets.Scripts;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class MonsterManager : MonoBehaviour
         }
         
         MonsterAttacks(0);
+        MoveNextMonsterToQueue();
 
         CalculateWaveDifficulty(ref waveDifficulty);
 
@@ -49,7 +51,30 @@ public class MonsterManager : MonoBehaviour
         monster.rotation = attackPoint.rotation;
 
     }
+    
+    public void MoveMonsterToQueue(int monsterIndex)
+    {
 
+        if (monsters.Count <= monsterIndex) return;
+
+        Transform monster = monsters[monsterIndex].transform;
+        monster.GetComponent<MonsterController>().ChangeState(MonsterState.Queue);
+        monster.position = queuePoint.position;
+        monster.rotation = queuePoint.rotation;
+
+    }
+
+    public void MoveNextMonsterToQueue()
+    {
+        MoveMonsterToQueue(1);
+    }
+
+    public void KillMonster(int monsterIndex)
+    {
+        Destroy(monsters[monsterIndex]);    
+        monsters.RemoveAt(monsterIndex);
+    }
+    
     float CalculateWaveDifficulty(ref float difficulty)
     {
         foreach (GameObject monster in monsters)
