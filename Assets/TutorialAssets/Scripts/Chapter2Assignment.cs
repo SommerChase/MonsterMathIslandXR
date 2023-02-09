@@ -20,8 +20,8 @@ public class Chapter2Assignment : MonoBehaviour
             Debug.Log(randomNumbers[index]);
         }
         
+        Debug.Log($"Here's the list before: {string.Join(", ", randomNumbers)}.");
         
-
     }
 
     // Update is called once per frame
